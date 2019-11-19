@@ -1,0 +1,17 @@
+.nav {
+    width: 100vw;
+    display: flex;
+            justify-content: flex-start;
+}
+#headerTopRow{
+    justify-content: center;
+}
+/* .linkButtons {
+    padding: .3em;
+} */
+.linkButtons a {
+    margin: .4em;
+}
+/* #signBtn {
+    margin-left: 52vw;
+} */
