@@ -1,0 +1,17 @@
+<h2>Like what you see? Sign up for free.</h2>
+<hr>
+<!-- sign up form -->
+<form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+    <div class="registerForm">
+        <!-- create username -->
+        <mat-form-field>
+            <input placeholder="Create Username" formControlName="userName" type="text" required />
+        </mat-form-field>
+        <!-- create password -->
+        <mat-form-field>
+            <input placeholder="Create New Password" formControlName="password" type="password" required />
+        </mat-form-field>
+        <!-- submit new user info -->
+        <button mat-raised-button class="nav-btn" type="submit">Sign Up</button>
+    </div>
+</form>
