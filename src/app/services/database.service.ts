@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { JwtInterceptor } from '../helpers/jwt.interceptor';
+
+
 
 
 @Injectable({
@@ -14,10 +17,12 @@ export class DatabaseService {
     
     constructor(private http: HttpClient) {}
 
+
     // Http Options
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
     })
   }
 //   API URL
@@ -31,6 +36,15 @@ getAllGames(): Observable<Games> {
         catchError(this.handleError)
       )
   }
+       // Delete game by id
+       deleteGame(id) {
+        return this.http
+          .delete<any>(`$this.gamesURL + {id}`, this.httpOptions)
+          .pipe(
+            retry(2),
+            catchError(this.handleError)
+          )
+      }
 
     // Handle API errors
     handleError(error: HttpErrorResponse) {
@@ -48,14 +62,6 @@ getAllGames(): Observable<Games> {
         return throwError(
           'Something bad happened; please try again later.');
       };
-      // Delete game by id
-  deleteGame(id) {
-    return this.http
-      .delete<Games>(this.gamesURL + id, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
+ 
      
 }

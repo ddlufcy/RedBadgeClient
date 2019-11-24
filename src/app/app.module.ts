@@ -28,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AlertComponent } from './alert/alert.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 
@@ -56,7 +57,8 @@ import { AlertComponent } from './alert/alert.component';
     AddGameComponent,
     RegisterComponent,
     AlertComponent,
-    RegisterComponent
+    RegisterComponent,
+    FavoritesComponent
 
     
   ],
