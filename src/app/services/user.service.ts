@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { APIURL } from '../../environments/environment.prod';
-import { Auth } from '../models/auth.model';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': sessionStorage.getItem('token')
-  })
-}
-const httpNoAuthOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-}
+import { HttpClient } from '@angular/common/http';
 
+import { User } from '../models/user.model';
+import { environment } from 'src/environments/environment';
+
+const apiURL = 'http://localhost:3000';
+@Injectable({ providedIn: 'root' })
 export class UserService {
-  
-  
+    constructor(private http: HttpClient) { }
+
+    getAll() {
+        return this.http.get<User[]>(`${environment.apiURL}/auth/`);
+    }
+
+    register(user: User) {
+        return this.http.post(`${environment.apiURL}/auth/signup`, user);
+    }
+
+    delete(id: number) {
+        return this.http.delete(`${environment.apiURL}/users/${id}`);
+    }
 }
