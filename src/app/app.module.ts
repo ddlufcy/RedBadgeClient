@@ -10,7 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddGameComponent } from './add-game/add-game.component'
 import { HeaderComponent } from './header/header.component';
 import { GamesComponent } from './games/games.component'
-// import { AppRoutingModule } from './app-routing.module';
+import { appRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -19,7 +19,6 @@ import { LoginComponent } from './login/login.component'
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor'
 
-
 // Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,8 +26,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-// import { AlertComponent } from './alert/alert.component';
-// import { FavoritesComponent } from './favorites/favorites.component';
+import { AlertComponent } from './alert/alert.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 
@@ -56,9 +55,9 @@ import { MatInputModule } from '@angular/material/input';
     LoginComponent,
     AddGameComponent,
     RegisterComponent,
-    // AlertComponent,
+    AlertComponent,
     RegisterComponent,
-    // FavoritesComponent
+    FavoritesComponent
 
     
   ],
@@ -73,7 +72,7 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    // appRoutingModule
+    appRoutingModule
     // RouterModule.forRoot(routes),
 
    

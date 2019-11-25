@@ -11,7 +11,7 @@
           <button mat-stroked-button color="accent" routerLink="/about">About&nbsp;<mat-icon class="navIcon">sms
             </mat-icon>
           </button>
-          <button mat-stroked-button color="accent" routerLink="/favs">Add Your Favorite Game&nbsp;<mat-icon class="navIcon">whatshot
+          <button mat-stroked-button color="accent" routerLink="/add">Add Your Favorite Game&nbsp;<mat-icon class="navIcon">whatshot
             </mat-icon></button>
           <button mat-stroked-button color="accent" routerLink="/games">Games&nbsp;<mat-icon class="navIcon">
               videogame_asset
@@ -25,7 +25,6 @@
         </div>
         <div>
             <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
-            <a class="nav-item nav-link" (click)="logout()">Logout</a>
      
         </div>
       </mat-toolbar-row>

@@ -1,7 +1,10 @@
+
+
 import { HttpClient, HttpHeaders, HttpErrorResponse }from  '@angular/common/http';
 import { Games } from '../models/games';
 import { Injectable } from '@angular/core';
-// import { Response } from '@angular/common/http';
+import { Response } from '@angular/http';
+
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
@@ -36,14 +39,25 @@ getAllGames(): Observable<Games> {
       )
   }
        // Delete game by id
-       deleteGame(id) {
+       deleteGame(game) {
         return this.http
-          .delete<any>(`$this.gamesURL + {id}`, this.httpOptions)
+          .delete<any>(`${this.gamesURL}${game}`)
           .pipe(
             retry(2),
             catchError(this.handleError)
           )
       }
+
+      //Edit game by id
+      // editGame(game) {
+      //   return this.http
+      //   .put<any>(`${this.gamesURL}${game}`)
+      //   .pipe(
+      //     retry(2),
+      //     catchError(this.handleError)
+      //   )
+        
+      // }
 
     // Handle API errors
     handleError(error: HttpErrorResponse) {
