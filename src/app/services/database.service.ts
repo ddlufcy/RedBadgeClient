@@ -16,7 +16,8 @@ import { JwtInterceptor } from '../helpers/jwt.interceptor';
 export class DatabaseService {
     
     constructor(private http: HttpClient) {}
-
+    
+    game: Games;
 
     // Http Options
   httpOptions = {
@@ -36,16 +37,44 @@ getAllGames(): Observable<Games> {
         catchError(this.handleError)
       )
   }
-       // Delete game by id
-       deleteGame(id) {
+    
+      // // Delete item by id
+      // deleteGame(game): any {
+      //   return this.http
+      //     .delete(`http://localhost:3000/games/${game}`, this.httpOptions)
+          
+      // }
+        deleteGame(game){
         return this.http
-          .delete<any>(`$this.gamesURL + {id}`, this.httpOptions)
+          .delete<any>(`${this.gamesURL}${game}`)
           .pipe(
             retry(2),
             catchError(this.handleError)
           )
       }
+      
 
+
+
+  updateGames(id, game): Observable<Games> {
+    return this.http
+      .put<Games>(this.gamesURL + id, JSON.stringify(game), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+ 
+
+    // Add a New Game
+    createGames(game): Observable<Games> {
+      return this.http
+        .post<Games>(this.gamesURL, JSON.stringify(game), this.httpOptions)
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
     // Handle API errors
     handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

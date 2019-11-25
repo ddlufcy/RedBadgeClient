@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Input } from '@angular/core';
+import { retry, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
+import { Games } from '../models/games';
 
 @Component({
   selector: 'app-games',
@@ -16,13 +20,16 @@ import { DatabaseService } from '../services/database.service';
 export class GamesComponent implements OnInit {
 
   gamesData: any;
+  game: Games;
 
 
   constructor(
-    public DatabaseService: DatabaseService
+    public DatabaseService: DatabaseService,
+    public http: HttpClient
   ) {
     this.gamesData = [];
   }
+
 
   ngOnInit() {
     this.getAllGames();
@@ -36,10 +43,8 @@ export class GamesComponent implements OnInit {
     })
   }
 
-
   deleteGame(game) {
-    //Delete item in Student data
-    this.DatabaseService.deleteGame(this.gamesData.id).subscribe(response => {
+    this.DatabaseService.deleteGame(game).subscribe(response => {
       //Update list after delete is successful
       console.log(response);
       this.getAllGames();

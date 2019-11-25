@@ -1,0 +1,19 @@
+<div class="container">
+ 
+    <h3>Edit Game Info</h3>
+    
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="data.name" placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <input type="text" class="form-control" id="genre" [(ngModel)]="data.genre" placeholder="Edit Genre">
+        </div>
+        <div class="form-group">
+            <label for="year">Year</label>
+            <input type="text" class="form-control" id="year" [(ngModel)]="data.year" placeholder="Edit Year">
+        </div>
+        <button type="submit" class="btn btn-success" (click)="update()">Update</button>
+        <button type="submit" class="btn btn-warning ml-1" [routerLink]="[ 'games']">Cancel</button>
+</div>    
