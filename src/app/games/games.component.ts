@@ -16,13 +16,13 @@ import { Games } from '../models/games';
 //   headers: new HttpHeaders()
 //   .set('Authorization')
 //   }
- 
+
 export class GamesComponent implements OnInit {
-  id: number;
+
   gamesData: any;
   game: Games;
 
-  
+
   constructor(
     public DatabaseService: DatabaseService,
     public http: HttpClient
@@ -30,11 +30,11 @@ export class GamesComponent implements OnInit {
     this.gamesData = [];
   }
 
- 
+
   ngOnInit() {
     this.getAllGames();
   }
- 
+
   getAllGames() {
     //Get saved list of students
     this.DatabaseService.getAllGames().subscribe(response => {
@@ -42,9 +42,7 @@ export class GamesComponent implements OnInit {
       this.gamesData = response;
     })
   }
-  
 
- 
   deleteGame(game) {
     this.DatabaseService.deleteGame(game).subscribe(response => {
       //Update list after delete is successful
@@ -53,4 +51,4 @@ export class GamesComponent implements OnInit {
     });
   }
 }
- 
+

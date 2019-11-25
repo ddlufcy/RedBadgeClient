@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+  left: 50%;
+}
+#mario {
+  width: 75%;
+  position: absolute;
+  left: -12em;
+  top: 5em;
+}
