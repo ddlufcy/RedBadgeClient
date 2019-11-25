@@ -54,9 +54,9 @@ const routes = [
     LoginComponent,
     RegisterComponent,
     AddGameComponent,
-    AdminComponent 
+    AdminComponent
 
-    
+
   ],
   imports: [
     BrowserModule,
@@ -72,7 +72,7 @@ const routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot()
-   
+
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
@@ -80,5 +80,5 @@ const routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-//develop
+
 

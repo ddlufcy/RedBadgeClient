@@ -4,14 +4,9 @@
 
 
 export const environment = {
-<<<<<<< HEAD
-  Api_Url: "http://localhost:3000",
-  production: false
-=======
   production: false,
   apiURL: "http://localhost:3000"
-  
->>>>>>> 9492ca7a1459bdea6e3e8ec19bbfd0ee97b290e4
+
 };
 /*
  * For easier debugging in development mode, you can import the following file
