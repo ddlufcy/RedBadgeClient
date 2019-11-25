@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GamesService } from '../services/game.service'
 
 @Component({
   selector: 'app-games',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private games: GamesService) { }
 
   ngOnInit() {
+  }
+
+  fetchGames(event){
+    event.preventDefault();
+    this.games.getGames()
+
   }
 
 }

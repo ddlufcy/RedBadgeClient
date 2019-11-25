@@ -15,6 +15,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { GamesComponent } from './games/games.component';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginSignupComponent } from './login-signup/login-signup.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service'
+
 
 
 const routes = [
@@ -47,8 +50,11 @@ const routes = [
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-     FormsModule,
-    RouterModule.forRoot(routes)
+    FormsModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+   
+
    
   ],
   providers: [],

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-signup',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-signup.component.css']
 })
 export class LoginSignupComponent implements OnInit {
+  ResponseSignup: any;
 
-  constructor() { }
+  constructor(private User: UserService , private http: HttpClient) { 
+  ;
+  }
 
   ngOnInit() {
-  }
+  }  
+ 
+    
+
 
 }

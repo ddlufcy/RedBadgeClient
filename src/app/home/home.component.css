@@ -3,4 +3,8 @@ homeContent {
 }
 carousel{
     margin: 0;
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
 }
