@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RegisterComponent  } from '../register/register.component';
-// import { Router } from '@angular/router';
 
-import { environment } from '../../environments/environment';
-import { User } from '../models/user.model';;
+import { User } from '../models/user';
+const apiURL = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -22,26 +20,18 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiURL}/auth/signin`, { username, password })
+    login(userName, password) {
+        return this.http.post<any>(`${apiURL}/auth/signin`, { userName, password })
             .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
-
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
                 return user;
             }));
     }
-    register(regUserData: RegisterComponent  ){
-        return this.http.post(`${environment.apiURL}/Auth/signup`, regUserData);
-        //   this.Router.navigate(['/login'])
-      }
 
     logout() {
-        // remove user from local storage to log user out
+        // remove user from local storage and set current user to null
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
