@@ -1,7 +1,6 @@
-export interface Games {
-    // id: any;
+export class AddGames {
     name: string;
     genre: string;
-    year: any;
+    year: number;
     publisher: string;
 }

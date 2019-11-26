@@ -19,7 +19,7 @@ export class EditGamesComponent implements OnInit {
     public router: Router,
     public databaseService: DatabaseService
   ) {
-    this.data = new Games();
+     
   }
  
   ngOnInit() {

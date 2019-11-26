@@ -1,19 +1,26 @@
+<div formGroupName="addGame">
+  <form class="addGame">
 
-<div class="container">
- 
-    <h3>Add A Game</h3>
-    
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="data.name" placeholder="Name">
-        </div>
-        <div class="form-group">
-            <label for="genre">Genre</label>
-            <input type="text" class="form-control" id="genre" [(ngModel)]="data.genre" placeholder="Genre">
-        </div>
-        <div class="form-group">
-            <label for="year">Year</label>
-            <input type="text" class="form-control" id="year" [(ngModel)]="data.year" placeholder="Enter Name">
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="submitForm()">Add</button>
-</div>   
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input class="form-control" [(ngModel)]="AddGames.name" type="text" name="name"  formControlName="name" required><br>
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre:</label>
+      <input class="form-control" [(ngModel)]="AddGames.genre" type="text" name="genre"  formControlName="genre" required><br>
+    </div>
+
+    <div class="form-group">
+      <label for="year">Year:</label>
+      <input class="form-control" [(ngModel)]="AddGames.year" type="text" name="year" formControlName="year" required><br>
+    </div>
+
+    <div class="form-group">
+      <label for="publisher">Publisher:</label>
+      <input class="form-control" [(ngModel)]="AddGames.publisher" type="text" name="publisher" formControlName="publisher" required><br>
+    </div>
+
+    <button type="submit" (click)="submitForm()"> Submit </button>
+  </form>
+</div>
