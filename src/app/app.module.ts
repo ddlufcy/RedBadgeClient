@@ -62,7 +62,6 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
     FavoritesComponent,
     EditGamesComponent
 
-    
   ],
   imports: [
     BrowserModule,
@@ -78,7 +77,7 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
     appRoutingModule
     // RouterModule.forRoot(routes),
 
-   
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -87,5 +86,5 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-//develop
+
 
