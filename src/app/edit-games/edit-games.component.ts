@@ -31,10 +31,7 @@ game: Games;
   constructor(
     public activatedRoute: ActivatedRoute,
     public router: Router,
-    public databaseService: DatabaseService,
-    private formBuilder: FormBuilder
-  ) {}
- 
+
   ngOnInit() {
     this.name =new FormControl('');
     this.genre= new FormControl('');

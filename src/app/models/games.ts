@@ -1,7 +1,11 @@
 export interface Games {
-    id: any;
+
+    id?: number;
+
+
+
     name: string;
     genre: string;
-    year: number;
+    year: any;
     publisher: string;
 }
