@@ -6,6 +6,8 @@ import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { Games } from '../models/games';
+import { EditGamesComponent } from '../edit-games/edit-games.component';
+
 
 @Component({
   selector: 'app-games',
@@ -21,11 +23,14 @@ export class GamesComponent implements OnInit {
 
   gamesData: any;
   game: Games;
+  // modalRef: BsModalRef;
 
 
   constructor(
     public DatabaseService: DatabaseService,
-    public http: HttpClient
+    public http: HttpClient,
+   
+    
   ) {
     this.gamesData = [];
   }
@@ -50,5 +55,15 @@ export class GamesComponent implements OnInit {
       this.getAllGames();
     });
   }
+ 
+  
+  // updateGame(game) {
+  //   //edit item in Student data
+  //   this.DatabaseService.editGame(game).subscribe(response => {
+  //     //Update list after edit is successful
+  //     console.log(response);
+  //     this.getAllGames();
+  //   });
+  // }
 }
 

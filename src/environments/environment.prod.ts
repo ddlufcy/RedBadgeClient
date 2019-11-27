@@ -1,5 +1,9 @@
 export const environment = {
-  production: false,
+
+
+  production: true
 };
 
-export let apiURL: 'http://localhost:3000';
+
+
+

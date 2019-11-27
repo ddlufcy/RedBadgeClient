@@ -1,10 +1,12 @@
 
+
 import { HttpClient, HttpHeaders, HttpErrorResponse }from  '@angular/common/http';
 import { Games } from '../models/games';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+
+import { Observable, throwError, generate,  } from 'rxjs';
+import { retry, catchError, tap, map } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
 
 
@@ -14,9 +16,9 @@ import { JwtInterceptor } from '../helpers/jwt.interceptor';
     providedIn: 'root',
 })
 export class DatabaseService {
-    
+
     constructor(private http: HttpClient) {}
-    
+
     game: Games;
 
     // Http Options
@@ -37,13 +39,7 @@ getAllGames(): Observable<Games> {
         catchError(this.handleError)
       )
   }
-    
-      // // Delete item by id
-      // deleteGame(game): any {
-      //   return this.http
-      //     .delete(`http://localhost:3000/games/${game}`, this.httpOptions)
-          
-      // }
+
         deleteGame(game){
         return this.http
           .delete<any>(`${this.gamesURL}${game}`)
@@ -52,29 +48,33 @@ getAllGames(): Observable<Games> {
             catchError(this.handleError)
           )
       }
-      
 
 
 
-  updateGames(id, game): Observable<Games> {
+
+  updateGames( game): Observable<any> {
+    console.log(game)
+    const url = `${this.gamesURL}${game}`;
     return this.http
-      .put<Games>(this.gamesURL + id, JSON.stringify(game), this.httpOptions)
+      .put(url, game)
       .pipe(
-        retry(2),
+        tap(_ =>console.log(`updated product id=${game}`)),
         catchError(this.handleError)
       )
   }
- 
 
-    // Add a New Game
-    createGames(game): Observable<Games> {
-      return this.http
-        .post<Games>(this.gamesURL, JSON.stringify(game), this.httpOptions)
-        .pipe(
-          retry(2),
-          catchError(this.handleError)
-        )
-    }
+
+    // // Add a New Game
+    // createGames(game): Observable<Games> {
+    //   return this.http
+    //     .post<Games>(this.gamesURL, JSON.stringify(game), this.httpOptions)
+    //     .pipe(
+    //       retry(2),
+    //       catchError(this.handleError)
+    //     )
+    // }
+
+
     // Handle API errors
     handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
@@ -91,6 +91,6 @@ getAllGames(): Observable<Games> {
         return throwError(
           'Something bad happened; please try again later.');
       };
- 
-     
+
+
 }
