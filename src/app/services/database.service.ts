@@ -19,7 +19,7 @@ export class DatabaseService {
 
     constructor(private http: HttpClient) {}
 
-    game: Games;
+    games: any;
 
     // Http Options
   httpOptions = {
@@ -29,7 +29,7 @@ export class DatabaseService {
     })
   }
 //   API URL
-  private gamesURL = 'http://localhost:3000/games/';
+  private gamesURL = 'http://localhost:3000/games';
 // Get games data
 getAllGames(): Observable<Games> {
     return this.http
@@ -40,9 +40,9 @@ getAllGames(): Observable<Games> {
       )
   }
 
-        deleteGame(game){
+        deleteGame(games){
         return this.http
-          .delete<any>(`${this.gamesURL}${game}`)
+          .delete<any>(`${this.gamesURL}/${games}`)
           .pipe(
             retry(2),
             catchError(this.handleError)
@@ -51,14 +51,13 @@ getAllGames(): Observable<Games> {
 
 
 
-
-  updateGames( game): Observable<any> {
-    console.log(game)
-    const url = `${this.gamesURL}${game}`;
+  updateGames(games: Games) {
+    console.log(games)
+    const url = `${this.gamesURL}/${games.id}`;
     return this.http
-      .put(url, game)
+      .put(url,{games: {name: games.name, genre: games.genre, year: games.year, publisher: games.publisher}})
       .pipe(
-        tap(_ =>console.log(`updated product id=${game}`)),
+      tap(_ =>console.log(`updated product id=${games.id}`)),
         catchError(this.handleError)
       )
   }

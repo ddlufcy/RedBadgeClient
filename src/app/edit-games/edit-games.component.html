@@ -1,7 +1,7 @@
 
  
     <h3>Edit Game Info</h3>
-    <form [formGroup]="EditGame" (ngSubmit)="editGamesSumbitHandler(game.id)">
+    <form [formGroup]="EditGame" (ngSubmit)="editGamesSumbitHandler(EditGame.value)">
 
         <div class="form-group">
             <label for="name">Name</label>
@@ -22,7 +22,7 @@
         <div class="form-group">
 
             <button [disabled]="loading" class="btn btn-success">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                
                 Update
             </button>
             <button  type="button" class="btn btn-warning ml-1" routerLink="/games">Cancel</button>
