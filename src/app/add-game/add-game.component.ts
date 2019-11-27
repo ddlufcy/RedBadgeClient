@@ -20,8 +20,8 @@ import { Post } from '../models/post.model'
 export class AddGameComponent implements OnInit {
 
   addGame: FormGroup;
-  addedGames = [];
-  newGame = {};
+  // addedGames = [];
+  // newGame = {};
 
   public gamesURL = "https://localhost:3000/games"
   HttpClient: any;

@@ -26,7 +26,7 @@ export class DatabaseService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token')
+      // 'Authorization': localStorage.getItem('token')
     })
   }
   //   API URL
@@ -67,23 +67,8 @@ export class DatabaseService {
       )
   }
 // Post new game
-createAndStoreGame(name: string, genre: string, year: number, publisher: string) {
-  const postData: Post = {name: name, genre: genre, year: year, publisher: publisher};
-  this.http
-    .post<{ any}>(
-      'http://localhost:3000/games/',
-      postData,
-      {
-        observe: 'response'
-      }
-    )
-    .subscribe(
-      responseData => {
-        console.log(responseData);
-      },
-      error => {
-        this.error.next(error.message);
-      }
+createAndStoreGame() {
+
     );
 }
 

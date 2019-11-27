@@ -1,7 +1,7 @@
 export interface Post {
-    name: string;
-    genre: string;
-    year: number;
-    publisher: string;
+    name: any;
+    genre: any;
+    year: any;
+    publisher: any;
     id?: any;
 }
