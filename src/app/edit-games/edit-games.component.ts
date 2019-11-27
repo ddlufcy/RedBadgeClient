@@ -26,14 +26,12 @@ game: Games;
  isLoadingResults = false;
  _id:string='';
 
+
  
   constructor(
     public activatedRoute: ActivatedRoute,
     public router: Router,
-    public databaseService: DatabaseService,
-    private formBuilder: FormBuilder
-  ) {}
- 
+
   ngOnInit() {
     this.name =new FormControl('');
     this.genre= new FormControl('');
@@ -58,19 +56,21 @@ game: Games;
   }
      // convenience getter for easy access to form fields
      get f() { return this.EditGame.controls; }
- 
-  editGamesSumbitHandler(formValues) {
-    let newGames ={
-      
-      name: formValues.name,
-      genre: formValues.genre,
-      year: formValues.year,
-      publisher: formValues.publisher
 
-    }
+  
+ 
+  editGamesSumbitHandler(games) {
+    // let newGames ={
+      
+    //   name: formValues.name,
+    //   genre: formValues.genre,
+    //   year: formValues.year,
+    //   publisher: formValues.publisher
+
+    // }
     
     //Update item by taking id and updated data object
-    this.databaseService.updateGames(newGames)
+    this.databaseService.updateGames(games)
     .subscribe((res) => {
       console.log('UPDATE GAME RESPONSE', res);
       this.databaseService.getAllGames()

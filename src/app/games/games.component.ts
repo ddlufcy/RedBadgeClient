@@ -23,7 +23,11 @@ export class GamesComponent implements OnInit {
 
   gamesData: any;
   game: Games;
+<<<<<<< HEAD
   toggle: boolean = false;
+=======
+  toggle: boolean= false;
+>>>>>>> 663119c4886c1a127c16e2d21fc71466b5fe03be
   // modalRef: BsModalRef;
 
   setToggle(): void {
@@ -40,8 +44,13 @@ export class GamesComponent implements OnInit {
   }
 
 
+
   ngOnInit() {
     this.getAllGames();
+  }
+
+  setToggle(): void {
+    const setToggle = !this.toggle
   }
 
   getAllGames() {
