@@ -10,7 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddGameComponent } from './add-game/add-game.component'
 import { HeaderComponent } from './header/header.component';
 import { GamesComponent } from './games/games.component'
-// import { AppRoutingModule } from './app-routing.module';
+import { appRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -18,7 +18,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component'
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor'
-import { appRoutingModule } from './app-routing.module';
 
 // Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AlertComponent } from './alert/alert.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { EditGamesComponent } from './edit-games/edit-games.component';
+
 
 
 
@@ -60,7 +60,8 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
     AlertComponent,
     RegisterComponent,
     FavoritesComponent,
-    EditGamesComponent
+    EditGamesComponent,
+    
 
   ],
   imports: [
@@ -74,7 +75,8 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    appRoutingModule
+    appRoutingModule,
+    
     // RouterModule.forRoot(routes),
 
 

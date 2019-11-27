@@ -11,25 +11,25 @@ import { Router } from '@angular/router';
 })
 export class AddGameComponent implements OnInit {
 
-  id: number;
-  data: Games;
+//   id: number;
+//   data: Games;
  
   constructor(
     public databaseService: DatabaseService,
     public router: Router
   ) {
-    this.data = new Games();
+    // this.data = new Games();
   }
  
   ngOnInit() {
   }
  
-  submitForm() {
-    this.databaseService.createGames(this.data).subscribe((response) => {
-      this.router.navigate(['list']);
-    });
+//   submitForm() {
+//     this.databaseService.createGames(this.data).subscribe((response) => {
+//       this.router.navigate(['list']);
+//     });
  
-  }
+//   }
  
 }
  
