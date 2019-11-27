@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Games } from '../models/games';
 import { DatabaseService} from '../services/database.service';
-import { FormGroup, FormControl, FormBuilder, NgForm } from '@angular/forms'
+import { FormGroup, FormControl, FormBuilder, NgForm, FormControlName } from '@angular/forms'
 
 @Component({
   selector: 'app-games-edit',
@@ -13,6 +13,10 @@ import { FormGroup, FormControl, FormBuilder, NgForm } from '@angular/forms'
 export class EditGamesComponent implements OnInit {
 game: Games;
   id: number;
+  name: FormControl;
+  genre: FormControl;
+  year: FormControl;
+  publisher: FormControl
   
  
   //Form State
@@ -31,11 +35,16 @@ game: Games;
   ) {}
  
   ngOnInit() {
+    this.name =new FormControl('');
+    this.genre= new FormControl('');
+    this.year = new FormControl('');
+    this.publisher= new FormControl('');
     this.EditGame = this.formBuilder.group({
-      name: '',
-      genre: '',
-      year: '',
-      publisher:'',
+      
+      name: this.name,
+      genre: this.genre,
+      year: this.year,
+      publisher: this.publisher,
      
   });
 
@@ -50,23 +59,26 @@ game: Games;
      // convenience getter for easy access to form fields
      get f() { return this.EditGame.controls; }
  
-  editGamesSumbitHandler(form: NgForm) {
-    this.loading= true;
-    const formValue = this.EditGame.value;
+  editGamesSumbitHandler(formValues) {
+    let newGames ={
+      
+      name: formValues.name,
+      genre: formValues.genre,
+      year: formValues.year,
+      publisher: formValues.publisher
+
+    }
+    
     //Update item by taking id and updated data object
-    this.databaseService.updateGames(this._id)
-    .subscribe(res => {
-      let id = res['_id'];
-      this.isLoadingResults = false;
-      this.router.navigate(['/games', id]);
+    this.databaseService.updateGames(newGames)
+    .subscribe((res) => {
+      console.log('UPDATE GAME RESPONSE', res);
+      this.databaseService.getAllGames()
     }, (err) => {
       console.log(err);
-      this.isLoadingResults = false;
+     
     }
   );
   }
-
-  
-  
  
 }
