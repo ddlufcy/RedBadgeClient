@@ -1,12 +1,14 @@
 
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse,HttpParams,HttpEventType } from '@angular/common/http';
 import { Games } from '../models/games';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
-
+import { Post } from '../models/post.model';
+import { map, catchError, tap } from 'rxjs/operators';
+import { Subject}   from 'rxjs';
 
 
 
@@ -14,7 +16,8 @@ import { JwtInterceptor } from '../helpers/jwt.interceptor';
   providedIn: 'root',
 })
 export class DatabaseService {
-
+  // HttpClient: any;
+  error = new Subject<string>();
   constructor(private http: HttpClient) { }
 
   game: Games;
@@ -55,14 +58,34 @@ export class DatabaseService {
 
 
   // Add a New Game
-  addGames(game) {
+  addGames(newGame):any {
     return this.http
-      .post<any>(`${this.gamesURL}${game}`, this.httpOptions)
+      .post<any>(this.gamesURL, newGame)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
+// Post new game
+createAndStoreGame(name: string, genre: string, year: number, publisher: string) {
+  const postData: Post = {name: name, genre: genre, year: year, publisher: publisher};
+  this.http
+    .post<{ any}>(
+      'http://localhost:3000/games/',
+      postData,
+      {
+        observe: 'response'
+      }
+    )
+    .subscribe(
+      responseData => {
+        console.log(responseData);
+      },
+      error => {
+        this.error.next(error.message);
+      }
+    );
+}
 
 
   updateGames(id, game): Observable<Games> {

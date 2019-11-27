@@ -5,8 +5,9 @@ import { DatabaseService } from '../services/database.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpEventType } from '@angular/common/http';
 import { AuthenticationService } from '../services/authentication.service'
+import { Post } from '../models/post.model'
 
 
 
@@ -17,37 +18,33 @@ import { AuthenticationService } from '../services/authentication.service'
 })
 
 export class AddGameComponent implements OnInit {
- 
-  Game: AddGames
-  
-public gamesURL = "https://localhost:3000/games"
+
+  addGame: FormGroup;
+  addedGames = [];
+  newGame = {};
+
+  public gamesURL = "https://localhost:3000/games"
+  HttpClient: any;
   constructor(
-    public databaseService: DatabaseService,
+    public dbService: DatabaseService,
     public router: Router,
-    public auth: AuthenticationService
-  ) {
-    this.Game = new AddGames;
-  }
-  addGame = new FormGroup({
-    name: new FormControl(''),
-    genre: new FormControl(''),
-    year: new FormControl(''),
-    publisher: new FormControl('')
-  }) 
+    public auth: AuthenticationService,
+    private fb: FormBuilder,
+    private http: HttpClient
+  ) { }
 
-  ngOnInit() {
-  }
-
-  submitForm(addGame) {
-    this.databaseService.addGames(this.addGame).subscribe((response) => {
-      console.log(response);
-    });
-
-  }
-
-}
+  ngOnInit() { }
 
   
+    onCreatePost(postData: Post) {
+      // Send Http request
+      this.dbService.createAndStoreGame(postData.name, postData.genre, postData.year, postData.publisher);
+    }
+  }
+
+
+
+
 
 
 
