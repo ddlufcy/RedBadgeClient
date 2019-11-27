@@ -20,8 +20,8 @@
           <td>{{game.publisher}}</td>
           <td style="display: flex">
 
-              <button type="button" class="btn btn-info btn-sm mr-1" >Add To Favorites</button>
-              <button type="button" class="btn btn-warning btn-sm" >Edit</button>
+              <button type="button" class="btn btn-info btn-sm mr-1" routerLink="/favorites" >Add To Favorites</button>
+              <button type="button" class="btn btn-warning btn-sm"  routerLink="/edit">Edit</button>
               <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteGame(game.id)">Delete</button>
           </td>
         </tr>

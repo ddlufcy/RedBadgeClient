@@ -28,6 +28,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AlertComponent } from './alert/alert.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { EditGamesComponent } from './edit-games/edit-games.component';
+
 
 
 
@@ -57,9 +59,10 @@ import { FavoritesComponent } from './favorites/favorites.component';
     RegisterComponent,
     AlertComponent,
     RegisterComponent,
-    FavoritesComponent
-
+    FavoritesComponent,
+    EditGamesComponent,
     
+
   ],
   imports: [
     BrowserModule,
@@ -72,10 +75,11 @@ import { FavoritesComponent } from './favorites/favorites.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    appRoutingModule
+    appRoutingModule,
+    
     // RouterModule.forRoot(routes),
 
-   
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -84,5 +88,5 @@ import { FavoritesComponent } from './favorites/favorites.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-//develop
+
 

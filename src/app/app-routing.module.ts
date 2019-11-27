@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { GamesComponent } from './games/games.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { EditGamesComponent } from './edit-games/edit-games.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -17,6 +18,8 @@ const routes: Routes = [
     { path: 'games', component: GamesComponent },
     { path: 'addGame', component: AddGameComponent },
     { path: 'favorites', component: FavoritesComponent  },
+    { path: 'edit', component: EditGamesComponent  },
+    
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

@@ -5,8 +5,8 @@ import { Games } from '../models/games';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { Observable, throwError, generate,  } from 'rxjs';
+import { retry, catchError, tap, map } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
 
 
@@ -18,7 +18,8 @@ import { JwtInterceptor } from '../helpers/jwt.interceptor';
 export class DatabaseService {
     
     constructor(private http: HttpClient) {}
-
+    
+    game: Games;
 
     // Http Options
   httpOptions = {
@@ -38,8 +39,8 @@ getAllGames(): Observable<Games> {
         catchError(this.handleError)
       )
   }
-       // Delete game by id
-       deleteGame(game) {
+    
+        deleteGame(game){
         return this.http
           .delete<any>(`${this.gamesURL}${game}`)
           .pipe(
@@ -47,17 +48,32 @@ getAllGames(): Observable<Games> {
             catchError(this.handleError)
           )
       }
+      
 
-      //Edit game by id
-      // editGame(game) {
-      //   return this.http
-      //   .put<any>(`${this.gamesURL}${game}`)
-      //   .pipe(
-      //     retry(2),
-      //     catchError(this.handleError)
-      //   )
-        
-      // }
+
+
+  updateGames( game):  Observable<any> {
+    console.log(game)
+    const url = `${this.gamesURL}${game}`;
+    return this.http
+      .put(url, game)
+      .pipe( 
+        tap(_ =>console.log(`updated product id=${game}`)),
+        catchError(this.handleError)
+      )
+  }
+ 
+
+    // // Add a New Game
+    // createGames(game): Observable<Games> {
+    //   return this.http
+    //     .post<Games>(this.gamesURL, JSON.stringify(game), this.httpOptions)
+    //     .pipe(
+    //       retry(2),
+    //       catchError(this.handleError)
+    //     )
+    // }
+
 
     // Handle API errors
     handleError(error: HttpErrorResponse) {
