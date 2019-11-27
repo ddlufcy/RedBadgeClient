@@ -23,6 +23,7 @@ export class GamesComponent implements OnInit {
 
   gamesData: any;
   game: Games;
+  toggle: boolean= false;
   // modalRef: BsModalRef;
 
 
@@ -36,8 +37,13 @@ export class GamesComponent implements OnInit {
   }
 
 
+
   ngOnInit() {
     this.getAllGames();
+  }
+
+  setToggle(): void {
+    const setToggle = !this.toggle
   }
 
   getAllGames() {
