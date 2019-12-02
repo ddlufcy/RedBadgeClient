@@ -67,7 +67,7 @@ export class GamesComponent implements OnInit {
       data: game})
 
       dialogRef.afterClosed().subscribe(res => {
-        this.response$ = this.DatabaseService.updateGames(res, res)
+        this.response$ = this.DatabaseService.updateGames(res.id, res)
         this.response$.subscribe(res => {
           console.log(res)
           this.getAllGames();
