@@ -3,82 +3,38 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Games } from '../models/games';
 import { DatabaseService} from '../services/database.service';
-import { FormGroup, FormControl, FormBuilder, NgForm, FormControlName } from '@angular/forms'
-
+import { FormGroup, FormControl, FormBuilder, NgForm, FormControlName } from '@angular/forms';
 @Component({
   selector: 'app-games-edit',
   templateUrl: './edit-games.component.html',
   styleUrls: ['./edit-games.component.css']
 })
 export class EditGamesComponent implements OnInit {
-game: Games;
-  id: number;
-  name: FormControl;
-  genre: FormControl;
-  year: FormControl;
-  publisher: FormControl
-  
- 
-  //Form State
-  loading = false;
-  submitted = false;
- EditGame: FormGroup;
- isLoadingResults = false;
- _id:string='';
-
-
- 
-  constructor(
-    public activatedRoute: ActivatedRoute,
-    public router: Router,
-
-  ngOnInit() {
-    this.name =new FormControl('');
-    this.genre= new FormControl('');
-    this.year = new FormControl('');
-    this.publisher= new FormControl('');
-    this.EditGame = this.formBuilder.group({
-      
-      name: this.name,
-      genre: this.genre,
-      year: this.year,
-      publisher: this.publisher,
-     
+  game: Games;
+  id: number= null;
+  EditGame =  new FormGroup({
+    name: new FormControl(''),
+    genre: new FormControl(''),
+    year: new FormControl(''),
+    publisher: new FormControl('')
   });
-
-  this.EditGame.valueChanges.subscribe(console.log);
-    this.id = this.activatedRoute.snapshot.params["id"];
-    //get item details using id
-    this.databaseService.getAllGames().subscribe(response => {
-      console.log(response);
-      this.game = response;
-    })
+  constructor(
+   private activatedRoute: ActivatedRoute,
+    public router: Router,
+    public formBuilder: FormBuilder,
+    private databaseService: DatabaseService
+    ){ }
+  ngOnInit() {
   }
-     // convenience getter for easy access to form fields
-     get f() { return this.EditGame.controls; }
 
-  
- 
-  editGamesSumbitHandler(games) {
-    // let newGames ={
-      
-    //   name: formValues.name,
-    //   genre: formValues.genre,
-    //   year: formValues.year,
-    //   publisher: formValues.publisher
-
-    // }
-    
-    //Update item by taking id and updated data object
-    this.databaseService.updateGames(games)
+  editGamesSumbitHandler(form:NgForm) {
+    this.databaseService.updateGames(this.id, form)
     .subscribe((res) => {
+      console.log(form);
       console.log('UPDATE GAME RESPONSE', res);
-      this.databaseService.getAllGames()
     }, (err) => {
       console.log(err);
-     
-    }
-  );
-  }
- 
+    });}
 }
+
+
