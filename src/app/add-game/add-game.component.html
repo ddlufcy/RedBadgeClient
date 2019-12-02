@@ -1,5 +1,12 @@
 
+<<<<<<< HEAD
       <form #postForm="ngForm" [formGroup]="postForm" (ngSubmit)="onCreatePost(postForm.value)">
+=======
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
+>>>>>>> 35c6a3a7cc6a1134dfcc015004835e138aaeeb80
         <div class="form-group">
           <label for="name">Name</label>
           <input
@@ -48,4 +55,10 @@
           [disabled]="!postForm.valid">
           Send Post
         </button>
+<<<<<<< HEAD
       </form>
+=======
+      </form>
+    </div>
+  </div>
+>>>>>>> 35c6a3a7cc6a1134dfcc015004835e138aaeeb80

@@ -1,19 +1,34 @@
-<div class="container">
+
  
     <h3>Edit Game Info</h3>
-    
+    <form [formGroup]="EditGame" (ngSubmit)="editGamesSumbitHandler(EditGame.value)">
+
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="data.name" placeholder="Enter Name">
+            <input  type="text" formControlName="name"class="form-control" id="name" placeholder="Edit Name">
         </div>
         <div class="form-group">
             <label for="genre">Genre</label>
-            <input type="text" class="form-control" id="genre" [(ngModel)]="data.genre" placeholder="Edit Genre">
+            <input type="text" class="form-control"formControlName="genre" id="genre" placeholder="Edit Genre">
         </div>
         <div class="form-group">
             <label for="year">Year</label>
-            <input type="text" class="form-control" id="year" [(ngModel)]="data.year" placeholder="Edit Year">
+            <input type="text" class="form-control" id="year" formControlName="year" placeholder="Edit Year">
         </div>
-        <button type="submit" class="btn btn-success" (click)="update()">Update</button>
-        <button type="submit" class="btn btn-warning ml-1" [routerLink]="[ 'games']">Cancel</button>
-</div>    
+        <div class="form-group">
+            <label for="publisher">Publisher</label>
+            <input type="text" class="form-control" id="publisher" formControlName="publisher" placeholder="Edit Publisher">
+        </div>
+        <div class="form-group">
+
+            <button [disabled]="loading" class="btn btn-success" (click)= "setToggle()">
+                
+                Update
+            </button>
+            <button  type="button" class="btn btn-warning ml-1" routerLink="/games">Cancel</button>
+        </div>
+    </form>
+  
+        
+    
+
