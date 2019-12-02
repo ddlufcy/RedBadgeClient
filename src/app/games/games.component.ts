@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { Games } from '../models/games';
 import { EditGamesComponent } from '../edit-games/edit-games.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -20,11 +21,18 @@ import { EditGamesComponent } from '../edit-games/edit-games.component';
 //   }
 
 export class GamesComponent implements OnInit {
+<<<<<<< HEAD
 
   gamesData: any;
   game: Games;
   toggle: boolean = false;
 
+=======
+  response$: Observable<any>;
+  public gamesData: any;
+  public game: Games;
+  toggle: boolean= false;
+>>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
   // modalRef: BsModalRef;
 
   // setToggle(): void {
@@ -34,8 +42,13 @@ export class GamesComponent implements OnInit {
   constructor(
     public db: DatabaseService,
     public http: HttpClient,
+<<<<<<< HEAD
 
 
+=======
+    public dialog:MatDialog
+    
+>>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
   ) {
     this.gamesData = [];
   }
@@ -65,6 +78,7 @@ export class GamesComponent implements OnInit {
       this.getAllGames();
     });
   }
+<<<<<<< HEAD
 
 
   updateGame(game) {
@@ -75,5 +89,31 @@ export class GamesComponent implements OnInit {
       this.getAllGames();
     });
   }
+=======
+  openUpdate(game): void {
+    const dialogRef = this.dialog.open(EditGamesComponent, {
+      data: game})
+
+      dialogRef.afterClosed().subscribe(res => {
+        this.response$ = this.DatabaseService.updateGames(res.id, res)
+        this.response$.subscribe(res => {
+          console.log(res)
+          this.getAllGames();
+        })
+    })}
+  
+    
+      
+    
+  
+  // updateGame(game) {
+  //   //edit item in Student data
+  //   this.DatabaseService.editGame(game).subscribe(response => {
+  //     //Update list after edit is successful
+  //     console.log(response);
+  //     this.getAllGames();
+  //   });
+  // }
+>>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
 }
 

@@ -27,9 +27,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
 import { AlertComponent } from './alert/alert.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { EditGamesComponent } from './edit-games/edit-games.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -62,6 +65,8 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
     RegisterComponent,
     FavoritesComponent,
     EditGamesComponent,
+    CarouselComponent,
+    NavbarComponent,
     
 
   ],
@@ -73,6 +78,7 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule ,
+    MatDialogModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

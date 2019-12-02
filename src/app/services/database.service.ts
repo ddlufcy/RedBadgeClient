@@ -27,12 +27,21 @@ export class DatabaseService {
 
   // Http Options
 
-  httpOptions(auth_token): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': auth_token
-    })
-    return this.http.get("http://localhost:3000/games/", { headers: headers })
+   httpOptions () {
+    if (sessionStorage.getItem('token')) {
+      return {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Authorization": sessionStorage.getItem('token')
+        })
+      }
+    } else {
+      return {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json"
+        })
+      }
+    }
   }
 
   //   API URL
@@ -46,13 +55,13 @@ export class DatabaseService {
         catchError(this.handleError)
       )
   }
-  getGames(id: number): Observable<Games> {
-    const url = `${this.gamesURL}${11}`;
-    return this.http.get<Games>(url).pipe(
-      tap(_ => console.log(`fetched game id=${11}`)),
-      catchError(this.handleError)
-    );
-  }
+  // getGames(id: number): Observable<Games> {
+  //   const url = `${this.gamesURL}${11}`;
+  //   return this.http.get<Games>(url).pipe(
+  //     tap(_ => console.log(`fetched game id=${11}`)),
+  //     catchError(this.handleError)
+  //   );
+  // }
 
 
   deleteGame(game) {
@@ -82,11 +91,11 @@ createAndStoreGame() {
 
 
 
-  updateGames(id: number, games:any): Observable<any> {
+  updateGames(id, game): Observable<any> {
     console.log()
     const url = `${this.gamesURL}${id}`;
     return this.http
-      .put<any>(url, {games:games}, this.httpOptions)
+      .put<any>(url, game, this.httpOptions())
       .pipe(
 
         catchError(this.handleError)
