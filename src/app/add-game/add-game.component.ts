@@ -38,7 +38,7 @@ export class AddGameComponent implements OnInit {
 
     onCreatePost(postData: Post) {
       // Send Http request
-      this.dbService.createAndStoreGame(postData.name, postData.genre, postData.year, postData.publisher);
+      this.dbService.createAndStoreGame();
     }
   }
 
