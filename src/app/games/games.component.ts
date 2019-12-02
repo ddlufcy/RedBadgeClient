@@ -21,8 +21,8 @@ import { EditGamesComponent } from '../edit-games/edit-games.component';
 
 export class GamesComponent implements OnInit {
 
-  gamesData: any;
-  game: Games;
+  public gamesData: any;
+  public game: Games;
   toggle: boolean= false;
   // modalRef: BsModalRef;
 

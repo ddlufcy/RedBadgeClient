@@ -4,11 +4,10 @@ import { HttpClient, HttpHeaders, HttpErrorResponse }from  '@angular/common/http
 import { Games } from '../models/games';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
-import { Observable, throwError, generate,  } from 'rxjs';
+import { Observable, throwError, generate } from 'rxjs';
 import { retry, catchError, tap, map } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
 import { Post } from '../models/post.model';
-import { map, catchError, tap } from 'rxjs/operators';
 import { Subject}   from 'rxjs';
 
 
@@ -18,11 +17,13 @@ import { Subject}   from 'rxjs';
 })
 export class DatabaseService {
 
+  gameObject: any;
   // HttpClient: any;
   error = new Subject<string>();
   constructor(private http: HttpClient) { }
 
   game: Games;
+  
 
   // Http Options
 
@@ -37,8 +38,6 @@ export class DatabaseService {
   private gamesURL = 'http://localhost:3000/games/';
   // Get games data
   getAllGames(): Observable<Games> {
-=======
-
     return this.http
       .get<Games>(this.gamesURL)
       .pipe(
@@ -46,25 +45,15 @@ export class DatabaseService {
         catchError(this.handleError)
       )
   }
+  getGames(id: number): Observable<Games> {
+    const url = `${this.gamesURL}${11}`;
+    return this.http.get<Games>(url).pipe(
+      tap(_ => console.log(`fetched game id=${11}`)),
+      catchError(this.handleError)
+    );
+  }
 
-
-    
-        deleteGame(games){
-        return this.http
-          .delete<any>(`${this.gamesURL}/${games}`)
-          .pipe(
-            retry(2),
-            catchError(this.handleError)
-          )
-      }
-      
-
-  // // Delete item by id
-  // deleteGame(game): any {
-  //   return this.http
-  //     .delete(`http://localhost:3000/games/${game}`, this.httpOptions)
-
-  // }
+  
   deleteGame(game) {
     return this.http
       .delete<any>(`${this.gamesURL}${game}`)
@@ -75,34 +64,37 @@ export class DatabaseService {
   }
 
 
-  // Add a New Game
-  addGames(newGame):any {
-    return this.http
-      .post<any>(this.gamesURL, newGame)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-// Post new game
+  // // Add a New Game
+  // addGames(newGame):any {
+  //   return this.http
+  //     .post<any>(this.gamesURL, newGame)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+  // Post new game
 createAndStoreGame() {
-
-    );
+  
 }
 
 
-  updateGames(games: Games) {
-    console.log(games)
-    const url = `${this.gamesURL}/${games.id}`;
+
+
+  updateGames(id: number, games:any): Observable<any> {
+    console.log()
+    const url = `${this.gamesURL}${id}`;
     return this.http
-      .put(url,{games: {name: games.name, genre: games.genre, year: games.year, publisher: games.publisher}})
+      .put<any>(url, {games:games}, this.httpOptions)
       .pipe( 
-      tap(_ =>console.log(`updated product id=${games.id}`)),
+       
         catchError(this.handleError)
       )
+  }
 
 
   // Handle API errors
+
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -119,7 +111,6 @@ createAndStoreGame() {
       'Something bad happened; please try again later.');
   };
 
-
     // // Add a New Game
     // createGames(game): Observable<Games> {
     //   return this.http
@@ -129,4 +120,9 @@ createAndStoreGame() {
     //       catchError(this.handleError)
     //     )
     // }
-
+  
+    // getCookies(){
+    //   return this.game=
+    //   gameId: sessionStorage.getItem('id')
+    // }
+}
