@@ -67,10 +67,7 @@ export class DatabaseService {
       )
   }
 // Post new game
-createAndStoreGame() {
-
-    );
-}
+createAndStoreGame() {}
 
 
   updateGames(id, game): Observable<Games> {

@@ -21,7 +21,7 @@ export class AddGameComponent implements OnInit {
 
   addGame: FormGroup;
   // addedGames = [];
-  // newGame = {};
+  postForm = {};
 
   public gamesURL = "https://localhost:3000/games"
   HttpClient: any;
@@ -36,9 +36,9 @@ export class AddGameComponent implements OnInit {
   ngOnInit() { }
 
   
-    onCreatePost(postData: Post) {
+    onCreatePost(postForm: Post) {
       // Send Http request
-      this.dbService.createAndStoreGame(postData.name, postData.genre, postData.year, postData.publisher);
+      this.HttpClient.addGames(postForm.name, postForm.genre, postForm.publisher, postForm.year);
     }
   }
 
