@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { Games } from '../models/games';
 import { EditGamesComponent } from '../edit-games/edit-games.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { EditGamesComponent } from '../edit-games/edit-games.component';
 //   }
 
 export class GamesComponent implements OnInit {
-
+  response$: Observable<any>;
   public gamesData: any;
   public game: Games;
   toggle: boolean= false;
@@ -30,7 +31,7 @@ export class GamesComponent implements OnInit {
   constructor(
     public DatabaseService: DatabaseService,
     public http: HttpClient,
-   
+    public dialog:MatDialog
     
   ) {
     this.gamesData = [];
@@ -61,7 +62,21 @@ export class GamesComponent implements OnInit {
       this.getAllGames();
     });
   }
- 
+  openUpdate(game): void {
+    const dialogRef = this.dialog.open(EditGamesComponent, {
+      data: game})
+
+      dialogRef.afterClosed().subscribe(res => {
+        this.response$ = this.DatabaseService.updateGames(res, res)
+        this.response$.subscribe(res => {
+          console.log(res)
+          this.getAllGames();
+        })
+    })}
+  
+    
+      
+    
   
   // updateGame(game) {
   //   //edit item in Student data
