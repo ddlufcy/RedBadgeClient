@@ -1,0 +1,32 @@
+<div class="nav">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row id="headerTopRow">
+        <div id="mainTitle">My Application</div>
+      </mat-toolbar-row>
+  
+      <mat-toolbar-row>
+        <div class="linkButtons">
+          <button mat-stroked-button color="accent" routerLink="/">Home&nbsp;<mat-icon class="navIcon">home</mat-icon>
+          </button>
+          <button mat-stroked-button color="accent" routerLink="/about">About&nbsp;<mat-icon class="navIcon">sms
+            </mat-icon>
+          </button>
+          <button mat-stroked-button color="accent" routerLink="/add">Add Your Favorite Game&nbsp;<mat-icon class="navIcon">whatshot
+            </mat-icon></button>
+          <button mat-stroked-button color="accent" routerLink="/games">Games&nbsp;<mat-icon class="navIcon">
+              videogame_asset
+            </mat-icon></button>
+          <button id="signBtn" mat-stroked-button color="accent" routerLink="/login">Login&nbsp;
+            <mat-icon>person
+            </mat-icon></button>
+          <button id="signBtn" mat-stroked-button color="accent" routerLink="/register">Register&nbsp;
+            <mat-icon>person
+            </mat-icon></button>
+        </div>
+        <div>
+            <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+     
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>

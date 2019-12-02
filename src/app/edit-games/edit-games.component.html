@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Edit Games</h1>
+<div mat-dialog-content>
+    <form [formGroup]="EditGame" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>name</mat-label>
+            <input matInput formControlName="name" type="text" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Genre</mat-label>
+            <input matInput formControlName="genre" type="text" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Year</mat-label>
+            <input matInput formControlName="year" type="text" required />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Publisher</mat-label>
+            <input matInput formControlName="publisher" type="text" required />
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="this.EditGame.value" [disabled]="!EditGame.valid">Update</button>
+</div>
+        
+    
+
