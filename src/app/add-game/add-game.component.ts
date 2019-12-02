@@ -19,9 +19,8 @@ import { Post } from '../models/post.model'
 
 export class AddGameComponent implements OnInit {
 
-  addGame: FormGroup;
+  postForm: FormGroup;
   // addedGames = [];
-  postForm = {};
 
   public gamesURL = "https://localhost:3000/games"
   HttpClient: any;
@@ -33,12 +32,20 @@ export class AddGameComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.postForm = this.fb.group({
+      name: new FormControl(''),
+      genre: new FormControl(''),
+      year: new FormControl(''),
+      publisher: new FormControl('')
+    })
+   }
 
   
-    onCreatePost(postForm: Post) {
+    onCreatePost(game) {
+      const values = game.value
       // Send Http request
-      this.HttpClient.addGames(postForm.name, postForm.genre, postForm.publisher, postForm.year);
+      this.dbService.addGames(game.value);
     }
   }
 

@@ -58,9 +58,9 @@ export class DatabaseService {
 
 
   // Add a New Game
-  addGames(newGame):any {
+  addGames(game):any {
     return this.http
-      .post<any>(this.gamesURL, newGame)
+      .post<any>(this.gamesURL, game)
       .pipe(
         retry(2),
         catchError(this.handleError)
