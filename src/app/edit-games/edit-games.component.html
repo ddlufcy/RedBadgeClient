@@ -1,7 +1,7 @@
 
  
     <h3>Edit Game Info</h3>
-    <form [formGroup]="EditGame" (ngSubmit)="editGamesSumbitHandler(EditGames,game.id)">
+    <form [formGroup]="EditGame" (ngSubmit)="editGamesSumbitHandler(game,EditGames)">
 
         <div class="form-group">
             <label for="name">Name</label>

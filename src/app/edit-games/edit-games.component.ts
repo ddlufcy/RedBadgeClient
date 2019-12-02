@@ -13,7 +13,7 @@ import { FormGroup, FormControl, FormBuilder, NgForm, FormControlName } from '@a
 })
 export class EditGamesComponent implements OnInit {
   
-  game: Games;
+  @Input() public game;
   id: number= null;
   EditGame =  new FormGroup({
     name: new FormControl(''),
@@ -50,11 +50,11 @@ export class EditGamesComponent implements OnInit {
 
   
  
-  editGamesSumbitHandler(form:NgForm) {
+  editGamesSumbitHandler(id: any, EditGame) {
   
-    this.databaseService.updateGames(this.id, form)
+    this.databaseService.updateGames(id, EditGame)
     .subscribe((res) => {
-      console.log(form);
+      console.log(EditGame);
       console.log('UPDATE GAME RESPONSE', res);
     }, (err) => {
       console.log(err);

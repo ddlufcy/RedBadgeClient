@@ -30,6 +30,8 @@ import { MatInputModule } from '@angular/material/input';
 import { AlertComponent } from './alert/alert.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { EditGamesComponent } from './edit-games/edit-games.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -62,6 +64,8 @@ import { EditGamesComponent } from './edit-games/edit-games.component';
     RegisterComponent,
     FavoritesComponent,
     EditGamesComponent,
+    CarouselComponent,
+    NavbarComponent,
     
 
   ],
