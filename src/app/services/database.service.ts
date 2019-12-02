@@ -1,6 +1,6 @@
 
 
-import { HttpClient, HttpHeaders, HttpErrorResponse }from  '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Games } from '../models/games';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
@@ -8,7 +8,7 @@ import { Observable, throwError, generate } from 'rxjs';
 import { retry, catchError, tap, map } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
 import { Post } from '../models/post.model';
-import { Subject}   from 'rxjs';
+import { Subject} from 'rxjs';
 
 
 
@@ -27,11 +27,12 @@ export class DatabaseService {
 
   // Http Options
 
-  httpOptions = {
-    headers: new HttpHeaders({
+  httpOptions(auth_token): Observable<any> {
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'Authorization': localStorage.getItem('token')
+      'Authorization': auth_token
     })
+    return this.http.get("http://localhost:3000/games/", { headers: headers })
   }
 
   //   API URL
@@ -122,4 +123,4 @@ createAndStoreGame() {
     //   return this.game=
     //   gameId: sessionStorage.getItem('id')
     // }
-}
+}}

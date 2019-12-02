@@ -27,9 +27,9 @@ export class GamesComponent implements OnInit {
 
   // modalRef: BsModalRef;
 
-  setToggle(): void {
-    this.toggle = !this.toggle
-  }
+  // setToggle(): void {
+  //   this.toggle = !this.toggle
+  // }
 
   constructor(
     public db: DatabaseService,
