@@ -15,13 +15,12 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.css']
 })
-// const header = {
-//   headers: new HttpHeaders()
-//   .set('Authorization')
-//   }
+
 
 export class GamesComponent implements OnInit {
   response$: Observable<any>;
+  game$: Observable<Games[]>;
+  stuff: any;
   public gamesData: any;
   public game: Games;
   toggle: boolean= false;
@@ -41,7 +40,15 @@ export class GamesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllGames();
+
   }
+  // postGames(): void {
+  //   this.game$ = this.DatabaseService.getPizzasByUser()
+  //   this.stuff = this.DatabaseService.getUser()
+  //   this.stuff.subscribe(res => {
+  //     this.stuff = res
+  //   })
+  // }
 
   setToggle(): void {
     const setToggle = !this.toggle
@@ -74,17 +81,5 @@ export class GamesComponent implements OnInit {
         })
     })}
   
-    
-      
-    
-  
-  // updateGame(game) {
-  //   //edit item in Student data
-  //   this.DatabaseService.editGame(game).subscribe(response => {
-  //     //Update list after edit is successful
-  //     console.log(response);
-  //     this.getAllGames();
-  //   });
-  // }
 }
 
