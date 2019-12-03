@@ -1,6 +1,6 @@
 
 
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse }from  '@angular/common/http';
 import { Games } from '../models/games';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
@@ -8,7 +8,7 @@ import { Observable, throwError, generate } from 'rxjs';
 import { retry, catchError, tap, map } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
 import { Post } from '../models/post.model';
-import { Subject} from 'rxjs';
+import { Subject}   from 'rxjs';
 
 
 
@@ -117,6 +117,9 @@ createAndStoreGame() {
         `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
 
     // // Add a New Game
     // createGames(game): Observable<Games> {
@@ -132,4 +135,5 @@ createAndStoreGame() {
     //   return this.game=
     //   gameId: sessionStorage.getItem('id')
     // }
-}}
+}
+
