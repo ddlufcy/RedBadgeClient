@@ -26,7 +26,7 @@ export class AddGameComponent implements OnInit {
   constructor(private dbService: DatabaseService, private fb: FormBuilder) { }
 
 
-  ngOnInit() { 
+  ngOnInit() {
     this.addGame=this.fb.group({
       name: new FormControl(),
       genre: new FormControl(),
@@ -35,7 +35,7 @@ export class AddGameComponent implements OnInit {
     })
   }
 
-  
+
     onCreatePost():void {
       // Send Http request
       this.response=this.dbService.createGames(this.addGame.value)

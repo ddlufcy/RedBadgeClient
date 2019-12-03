@@ -31,7 +31,7 @@ export class GamesComponent implements OnInit {
     public DatabaseService: DatabaseService,
     public http: HttpClient,
     public dialog:MatDialog
-    
+
   ) {
     this.gamesData = [];
   }
@@ -81,11 +81,11 @@ export class GamesComponent implements OnInit {
         })
     })}
     //add to favs
-    addToFavs(game): void {
-      this.DatabaseService.addFavGame(game).subscribe(response => {
-        console.log(response)
-      })
+    addToFavs(game){
+      console.log(game)
+    this.DatabaseService.addFavGame(game).subscribe(response => {
+      console.log(response);
+      this.getAllGames();
+    })
     }
-  
 }
-

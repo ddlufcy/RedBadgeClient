@@ -23,9 +23,14 @@ export class DatabaseService {
   constructor(private http: HttpClient) { }
 
   game: Games;
+
+
+
   session(token) {
     sessionStorage.setItem('token', token);
+
   }
+
 
   // Http Options
 
@@ -60,6 +65,19 @@ export class DatabaseService {
         catchError(this.handleError)
       )
   }
+  //Get Fav Games
+  getAllFavGames(): Observable<Games> {
+    return this.http
+      .get<Games>(this.favsURL, this.httpOptions())
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+
+
+
   // getGames(id: number): Observable
   //   const url = `${this.gamesURL}${11}`;
   //   return this.http.get<Games>(url).pipe(
@@ -68,7 +86,7 @@ export class DatabaseService {
   //   );
   // }
 
-  
+
   deleteGame(game) {
     return this.http
       .delete<any>(`${this.gamesURL}${game}`, this.httpOptions())
@@ -77,14 +95,29 @@ export class DatabaseService {
         catchError(this.handleError)
       )
   }
-//add to favs
-addFavGame(id:any, game: any): Observable<any> {
-  return this.http
-    .post<any>(`${this.favsURL}${game}`, this.httpOptions())
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
+
+  deleteFavGame(game) {
+    return this.http
+      .delete<any>(`${this.favsURL}${game}`, this.httpOptions())
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+
+  // // Add a New Game
+  // addGames(newGame):any {
+  //   return this.http
+  //     .post<any>(this.gamesURL, newGame)
+  //     .pipe(
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
+  // Post new game
+createAndStoreGame() {
+
 }
 
 
@@ -95,8 +128,19 @@ addFavGame(id:any, game: any): Observable<any> {
     const url = `${this.gamesURL}${id}`;
     return this.http
       .put<any>(url, game, this.httpOptions())
-      .pipe( 
-       
+      .pipe(
+
+        catchError(this.handleError)
+      )
+  }
+  //fav games
+  updateFavGames(id, game): Observable<any> {
+    console.log()
+    const url = `${this.favsURL}${id}`;
+    return this.http
+      .put<any>(url, game, this.httpOptions())
+      .pipe(
+
         catchError(this.handleError)
       )
   }
@@ -129,5 +173,14 @@ addFavGame(id:any, game: any): Observable<any> {
           catchError(this.handleError)
         )
     }
-  
+    addFavGame(game):Observable<Games> {
+      return this.http
+    .post<Games>(this.favsURL, game, this.httpOptions())
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+      )
+    }
+    
+
 }
