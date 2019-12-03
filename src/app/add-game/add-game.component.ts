@@ -22,16 +22,25 @@ export class AddGameComponent implements OnInit {
   addGame: FormGroup;
   response: Observable<any>;
   @Output() created= new EventEmitter<void>();
+  public gamesData: any;
 
-  constructor(private dbService: DatabaseService, private fb: FormBuilder) { }
+  constructor(private dbService: DatabaseService, private fb: FormBuilder) { this.gamesData = [];}
 
 
   ngOnInit() { 
+    this.getAllGames();
     this.addGame=this.fb.group({
       name: new FormControl(),
       genre: new FormControl(),
       year: new FormControl(),
       publisher: new FormControl()
+    })
+  }
+  getAllGames() {
+    //Get saved list of students
+    this.dbService.getAllGames().subscribe(response => {
+      console.log(response);
+      this.gamesData = response;
     })
   }
 
@@ -42,6 +51,7 @@ export class AddGameComponent implements OnInit {
       this.response.subscribe(res => console.log(res))
       this.addGame.reset()
       this.created.emit()
+      this.getAllGames();
     }
   }
 

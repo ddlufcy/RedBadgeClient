@@ -40,6 +40,8 @@ export class EditGamesComponent implements OnInit {
       publisher: this.data.publisher
   })
   }
+
+  
  
 //   editGamesSumbitHandler(id: any, EditGame) {
   
