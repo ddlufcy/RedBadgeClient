@@ -31,7 +31,7 @@ export class GamesComponent implements OnInit {
     public DatabaseService: DatabaseService,
     public http: HttpClient,
     public dialog:MatDialog
-    
+
   ) {
     this.gamesData = [];
   }
@@ -80,6 +80,5 @@ export class GamesComponent implements OnInit {
           this.getAllGames();
         })
     })}
-  
-}
 
+}
