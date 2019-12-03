@@ -23,7 +23,14 @@ export class DatabaseService {
   constructor(private http: HttpClient) { }
 
   game: Games;
-  
+
+
+
+  session(token) {
+    sessionStorage.setItem('token', token);
+
+  }
+
 
   // Http Options
 
@@ -63,7 +70,7 @@ export class DatabaseService {
   //   );
   // }
 
-  
+
   deleteGame(game) {
     return this.http
       .delete<any>(`${this.gamesURL}${game}`, this.httpOptions())
@@ -85,7 +92,7 @@ export class DatabaseService {
   // }
   // Post new game
 createAndStoreGame() {
-  
+
 }
 
 
@@ -96,8 +103,8 @@ createAndStoreGame() {
     const url = `${this.gamesURL}${id}`;
     return this.http
       .put<any>(url, game, this.httpOptions())
-      .pipe( 
-       
+      .pipe(
+
         catchError(this.handleError)
       )
   }
@@ -130,5 +137,5 @@ createAndStoreGame() {
           catchError(this.handleError)
         )
     }
-  
+
 }
