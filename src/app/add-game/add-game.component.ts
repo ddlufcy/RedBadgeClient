@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
 import { AddGames } from '../models/addGame';
 import { DatabaseService } from '../services/database.service';
 import { Router } from '@angular/router';
@@ -20,25 +20,28 @@ import { Post } from '../models/post.model'
 export class AddGameComponent implements OnInit {
 
   addGame: FormGroup;
-  // addedGames = [];
-  // newGame = {};
+  response: Observable<any>;
+  @Output() created= new EventEmitter<void>();
 
-  public gamesURL = "https://localhost:3000/games"
-  HttpClient: any;
-  constructor(
-    public dbService: DatabaseService,
-    public router: Router,
-    public auth: AuthenticationService,
-    private fb: FormBuilder,
-    private http: HttpClient
-  ) { }
-
-  ngOnInit() { }
+  constructor(private dbService: DatabaseService, private fb: FormBuilder) { }
 
 
-    onCreatePost(postData: Post) {
+  ngOnInit() {
+    this.addGame=this.fb.group({
+      name: new FormControl(),
+      genre: new FormControl(),
+      year: new FormControl(),
+      publisher: new FormControl()
+    })
+  }
+
+
+    onCreatePost():void {
       // Send Http request
-      this.dbService.createAndStoreGame();
+      this.response=this.dbService.createGames(this.addGame.value)
+      this.response.subscribe(res => console.log(res))
+      this.addGame.reset()
+      this.created.emit()
     }
   }
 

@@ -25,6 +25,13 @@ export class DatabaseService {
   game: Games;
 
 
+
+  session(token) {
+    sessionStorage.setItem('token', token);
+
+  }
+
+
   // Http Options
 
    httpOptions () {
@@ -49,7 +56,7 @@ export class DatabaseService {
   // Get games data
   getAllGames(): Observable<Games> {
     return this.http
-      .get<Games>(this.gamesURL)
+      .get<Games>(this.gamesURL, this.httpOptions())
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -66,7 +73,7 @@ export class DatabaseService {
 
   deleteGame(game) {
     return this.http
-      .delete<any>(`${this.gamesURL}${game}`)
+      .delete<any>(`${this.gamesURL}${game}`, this.httpOptions())
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -122,18 +129,13 @@ createAndStoreGame() {
   };
 
     // // Add a New Game
-    // createGames(game): Observable<Games> {
-    //   return this.http
-    //     .post<Games>(this.gamesURL, JSON.stringify(game), this.httpOptions)
-    //     .pipe(
-    //       retry(2),
-    //       catchError(this.handleError)
-    //     )
-    // }
+    createGames(game): Observable<Games> {
+      return this.http
+        .post<Games>(this.gamesURL,game, this.httpOptions())
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
 
-    // getCookies(){
-    //   return this.game=
-    //   gameId: sessionStorage.getItem('id')
-    // }
 }
-
