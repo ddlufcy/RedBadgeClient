@@ -17,3 +17,9 @@
 .cardContainer {
     padding: 1em 2em;
 }
+.isAdmin{
+    display: inherit;
+}
+.notAdmin{
+    display: none;
+}
