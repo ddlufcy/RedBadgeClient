@@ -1,6 +1,6 @@
 export class AddGames {
-    name: string;
-    genre: string;
-    year: number;
-    publisher: string;
+    name: any;
+    genre: any;
+    year: any;
+    publisher: any;
 }

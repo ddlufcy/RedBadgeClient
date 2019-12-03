@@ -2,15 +2,18 @@
 
 import { HttpClient, HttpHeaders, HttpErrorResponse }from  '@angular/common/http';
 import { Games } from '../models/games';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable, throwError, generate } from 'rxjs';
 import { retry, catchError, tap, map } from 'rxjs/operators';
 import { JwtInterceptor } from '../helpers/jwt.interceptor';
 import { Post } from '../models/post.model';
 import { Subject}   from 'rxjs';
+import { ɵangular_packages_platform_browser_platform_browser_g } from '@angular/platform-browser';
 
-
+@Input(){
+  
+}
 
 @Injectable({
   providedIn: 'root',
@@ -55,7 +58,7 @@ export class DatabaseService {
         catchError(this.handleError)
       )
   }
-  // getGames(id: number): Observable<Games> {
+  // getGames(id: number): Observable
   //   const url = `${this.gamesURL}${11}`;
   //   return this.http.get<Games>(url).pipe(
   //     tap(_ => console.log(`fetched game id=${11}`)),
@@ -75,9 +78,9 @@ export class DatabaseService {
 
 
   // Add a New Game
-  addGames(game) {
+  addGames(gamesURL:any, postForm:any) {
     return this.http
-      .post<any>(this.gamesURL, this.game)
+      .post<any>(`${this.gamesURL}${postForm.value}`)
       .pipe(
         retry(2),
         catchError(this.handleError)

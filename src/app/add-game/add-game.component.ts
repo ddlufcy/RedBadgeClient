@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AddGames } from '../models/addGame';
 import { DatabaseService } from '../services/database.service';
 import { Router } from '@angular/router';
@@ -18,12 +18,12 @@ import { Post } from '../models/post.model'
 })
 
 export class AddGameComponent implements OnInit {
-
+  @Input() public game;
   postForm: FormGroup;
-  // addedGames = [];
+  addGames;
 
   public gamesURL = "https://localhost:3000/games"
-  HttpClient: any;
+  // HttpClient: any;
   constructor(
     public dbService: DatabaseService,
     public router: Router,
@@ -33,6 +33,7 @@ export class AddGameComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.postForm);
     this.postForm = this.fb.group({
       name: new FormControl(''),
       genre: new FormControl(''),
@@ -43,17 +44,9 @@ export class AddGameComponent implements OnInit {
 
   
     onCreatePost(game) {
-      const values = game.value
-      // Send Http request
-      this.dbService.addGames(game.value);
+    // const values = game.value
+       //Send Http request
+     this.dbService.addGames(game.value);
     }
-  }
-
-
-
-
-
-
-
-
-
+    
+    }
