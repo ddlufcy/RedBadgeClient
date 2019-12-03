@@ -13,7 +13,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./edit-games.component.css']
 })
 export class EditGamesComponent implements OnInit {
-  
+
   @Input() public game;
   id: number= null;
   EditGame: FormGroup;
@@ -21,7 +21,7 @@ export class EditGamesComponent implements OnInit {
 
 
 
- 
+
   constructor(
    private activatedRoute: ActivatedRoute,
     public router: Router,
@@ -39,16 +39,4 @@ export class EditGamesComponent implements OnInit {
       year: this.data.year,
       publisher: this.data.publisher
   })
-  }
- 
-//   editGamesSumbitHandler(id: any, EditGame) {
-  
-//     this.databaseService.updateGames(id, EditGame)
-//     .subscribe((res) => {
-//       console.log(EditGame);
-//       console.log('UPDATE GAME RESPONSE', res);
-//     }, (err) => {
-//       console.log(err);
-     
-//     });}
- }
+  }}
