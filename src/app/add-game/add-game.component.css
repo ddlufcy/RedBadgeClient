@@ -1,0 +1,22 @@
+.container{
+    margin: 0;
+    padding: 0;
+    
+    
+}
+.row{
+    width: 210%;
+    margin: 0;
+    padding: 0;
+
+}
+.form-control{
+    width: 100%;
+    border: 1px solid;
+}
+
+button{
+    padding: 2px;
+    margin-left: 3px;
+    size: 10px;
+}

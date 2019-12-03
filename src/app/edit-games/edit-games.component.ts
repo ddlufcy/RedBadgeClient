@@ -39,4 +39,20 @@ export class EditGamesComponent implements OnInit {
       year: this.data.year,
       publisher: this.data.publisher
   })
-  }}
+
+  }
+
+  
+ 
+//   editGamesSumbitHandler(id: any, EditGame) {
+  
+//     this.databaseService.updateGames(id, EditGame)
+//     .subscribe((res) => {
+//       console.log(EditGame);
+//       console.log('UPDATE GAME RESPONSE', res);
+//     }, (err) => {
+//       console.log(err);
+     
+//     });}
+ }
+
