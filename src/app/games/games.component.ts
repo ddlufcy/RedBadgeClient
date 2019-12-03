@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs';
 import { DatabaseService } from '../services/database.service';
 import { Games } from '../models/games';
 import { EditGamesComponent } from '../edit-games/edit-games.component';
+import { AddGameComponent } from '../add-game/add-game.component';
 import { MatDialog } from '@angular/material/dialog';
 
 
@@ -33,7 +34,7 @@ export class GamesComponent implements OnInit {
     public dialog:MatDialog
 
   ) {
-    this.gamesData = [];
+    this.gamesData = []; 
   }
 
 
@@ -80,5 +81,24 @@ export class GamesComponent implements OnInit {
           this.getAllGames();
         })
     })}
+  
+    openAddGames(game): void {
+      const dialogRef = this.dialog.open(AddGameComponent, {
+        data: game})
+    
+        dialogRef.afterClosed().subscribe(res => {
+        
+            this.getAllGames();
+         } )
+    }
+
+
+
+
+
 
 }
+
+
+
+
