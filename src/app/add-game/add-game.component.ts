@@ -56,12 +56,3 @@ export class AddGameComponent implements OnInit {
       this.getAllGames();
     }
   }
-
-
-
-
-
-
-
-
-

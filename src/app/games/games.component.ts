@@ -81,21 +81,15 @@ export class GamesComponent implements OnInit {
           this.getAllGames();
         })
     })}
-  
-    openAddGames(game): void {
-      const dialogRef = this.dialog.open(AddGameComponent, {
-        data: game})
-    
-        dialogRef.afterClosed().subscribe(res => {
-        
-            this.getAllGames();
-         } )
+
+    //add to favs
+    addToFavs(game){
+      console.log(game)
+    this.DatabaseService.addFavGame(game).subscribe(response => {
+      console.log(response);
+      this.getAllGames();
+    })
     }
-
-
-
-
-
 
 }
 
