@@ -21,34 +21,18 @@ import { MatDialog } from '@angular/material/dialog';
 //   }
 
 export class GamesComponent implements OnInit {
-<<<<<<< HEAD
-
-  gamesData: any;
-  game: Games;
-  toggle: boolean = false;
-
-=======
   response$: Observable<any>;
   public gamesData: any;
   public game: Games;
   toggle: boolean= false;
->>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
   // modalRef: BsModalRef;
 
-  // setToggle(): void {
-  //   this.toggle = !this.toggle
-  // }
 
   constructor(
-    public db: DatabaseService,
+    public DatabaseService: DatabaseService,
     public http: HttpClient,
-<<<<<<< HEAD
-
-
-=======
     public dialog:MatDialog
-    
->>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
+
   ) {
     this.gamesData = [];
   }
@@ -65,31 +49,19 @@ export class GamesComponent implements OnInit {
 
   getAllGames() {
     //Get saved list of students
-    this.db.getAllGames().subscribe(response => {
+    this.DatabaseService.getAllGames().subscribe(response => {
       console.log(response);
       this.gamesData = response;
     })
   }
 
   deleteGame(game) {
-    this.db.deleteGame(game).subscribe(response => {
+    this.DatabaseService.deleteGame(game).subscribe(response => {
       //Update list after delete is successful
       console.log(response);
       this.getAllGames();
     });
   }
-<<<<<<< HEAD
-
-
-  updateGame(game) {
-    //edit item in Student data
-    this.db.updateGames(game).subscribe(response => {
-      //Update list after edit is successful
-      console.log(response);
-      this.getAllGames();
-    });
-  }
-=======
   openUpdate(game): void {
     const dialogRef = this.dialog.open(EditGamesComponent, {
       data: game})
@@ -101,11 +73,11 @@ export class GamesComponent implements OnInit {
           this.getAllGames();
         })
     })}
-  
-    
-      
-    
-  
+
+
+
+
+
   // updateGame(game) {
   //   //edit item in Student data
   //   this.DatabaseService.editGame(game).subscribe(response => {
@@ -114,6 +86,4 @@ export class GamesComponent implements OnInit {
   //     this.getAllGames();
   //   });
   // }
->>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
 }
-

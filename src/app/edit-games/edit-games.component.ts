@@ -13,18 +13,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./edit-games.component.css']
 })
 export class EditGamesComponent implements OnInit {
-<<<<<<< HEAD
 
-  game: Games;
-  id: number= null;
-  EditGame =  new FormGroup({
-    name: new FormControl(''),
-    genre: new FormControl(''),
-    year: new FormControl(''),
-    publisher: new FormControl('')
-  });
-=======
-  
   @Input() public game;
   id: number= null;
   EditGame: FormGroup;
@@ -32,8 +21,7 @@ export class EditGamesComponent implements OnInit {
 
 
 
- 
->>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
+
   constructor(
    private activatedRoute: ActivatedRoute,
     public router: Router,
@@ -51,46 +39,4 @@ export class EditGamesComponent implements OnInit {
       year: this.data.year,
       publisher: this.data.publisher
   })
-  }
-<<<<<<< HEAD
-    getData(id){
-      this.databaseService.getGames(id)
-      .subscribe(data => {
-        this.id = data.id;
-        this.EditGame.setValue({
-          name: data.name,
-          genre: data.genre,
-          year: data.year,
-          publisher: data.publisher
-        });
-        console.log(data);
-      });
-    }
-
-
-
-  editGamesSumbitHandler(form:NgForm) {
-
-    this.databaseService.updateGames(this.id, form)
-    .subscribe((res) => {
-      console.log(form);
-      console.log('UPDATE GAME RESPONSE', res);
-    }, (err) => {
-      console.log(err);
-
-    });}
-}
-=======
- 
-//   editGamesSumbitHandler(id: any, EditGame) {
-  
-//     this.databaseService.updateGames(id, EditGame)
-//     .subscribe((res) => {
-//       console.log(EditGame);
-//       console.log('UPDATE GAME RESPONSE', res);
-//     }, (err) => {
-//       console.log(err);
-     
-//     });}
- }
->>>>>>> ce293965b6300579d417b230fd5b7353c66ceda9
+  }}
