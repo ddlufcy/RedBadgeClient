@@ -40,6 +40,7 @@ export class GamesComponent implements OnInit {
 
 
   ngOnInit() {
+    this.isAdmin()
     this.getAllGames();
 
   }
@@ -50,6 +51,15 @@ export class GamesComponent implements OnInit {
   //     this.stuff = res
   //   })
   // }
+
+  isAdmin() {
+    let user = sessionStorage.getItem("username")
+    if (user === "admin") {
+      return true
+    } else {
+      return false
+    }
+  }
 
   setToggle(): void {
     const setToggle = !this.toggle
