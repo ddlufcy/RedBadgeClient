@@ -11,13 +11,10 @@ import { Post } from '../models/post.model';
 import { Subject}   from 'rxjs';
 import { ɵangular_packages_platform_browser_platform_browser_g } from '@angular/platform-browser';
 
-@Input(){
-  
-}
-
 @Injectable({
   providedIn: 'root',
 })
+  
 export class DatabaseService {
 
   gameObject: any;
@@ -26,7 +23,9 @@ export class DatabaseService {
   constructor(private http: HttpClient) { }
 
   game: Games;
-  
+  session(token) {
+    sessionStorage.setItem('token', token);
+  }
 
   // Http Options
 
@@ -49,10 +48,13 @@ export class DatabaseService {
 
   //   API URL
   private gamesURL = 'http://localhost:3000/games/';
+  //fav games URL
+  private favsURL = 'http://localhost:3000/favs/';
+
   // Get games data
   getAllGames(): Observable<Games> {
     return this.http
-      .get<Games>(this.gamesURL)
+      .get<Games>(this.gamesURL, this.httpOptions())
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -69,26 +71,20 @@ export class DatabaseService {
   
   deleteGame(game) {
     return this.http
-      .delete<any>(`${this.gamesURL}${game}`)
+      .delete<any>(`${this.gamesURL}${game}`, this.httpOptions())
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
-
-
-  // Add a New Game
-  addGames(gamesURL:any, postForm:any) {
-    return this.http
-      .post<any>(`${this.gamesURL}${postForm.value}`)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
-  }
-  // Post new game
-createAndStoreGame() {
-  
+//add to favs
+addFavGame(id:any, game: any): Observable<any> {
+  return this.http
+    .post<any>(`${this.favsURL}${game}`, this.httpOptions())
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
 }
 
 
@@ -125,17 +121,13 @@ createAndStoreGame() {
   };
 
     // // Add a New Game
-    // createGames(game): Observable<Games> {
-    //   return this.http
-    //     .post<Games>(this.gamesURL, JSON.stringify(game), this.httpOptions)
-    //     .pipe(
-    //       retry(2),
-    //       catchError(this.handleError)
-    //     )
-    // }
+    createGames(game): Observable<Games> {
+      return this.http
+        .post<Games>(this.gamesURL,game, this.httpOptions())
+        .pipe(
+          retry(2),
+          catchError(this.handleError)
+        )
+    }
   
-    // getCookies(){
-    //   return this.game=
-    //   gameId: sessionStorage.getItem('id')
-    // }
 }
