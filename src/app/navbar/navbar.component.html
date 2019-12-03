@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" routerLink="/about">About</a>
         <a class="nav-item nav-link" routerLink="/games">Games</a>
         <a class="nav-item nav-link" routerLink="/favorites">My Favorites</a>
         <a class="nav-item nav-link" routerLink="/addGame">Add a Game</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a id="logout" class="nav-item nav-link" (click)="logout()">Logout</a>
+        <h3>Welcome {{currentUser.user.userName}}</h3>
     </div>
 </nav>

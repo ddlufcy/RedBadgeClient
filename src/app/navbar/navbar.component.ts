@@ -12,7 +12,9 @@ import { User } from '../models/user';
 export class NavbarComponent implements OnInit {
 
   currentUser: User;
+  // user = this.currentUser.user.userName;
   ngOnInit() {
+    
   }
 
   constructor(
