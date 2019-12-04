@@ -10,6 +10,7 @@ import { JwtInterceptor } from '../helpers/jwt.interceptor';
 import { Post } from '../models/post.model';
 import { Subject}   from 'rxjs';
 import { ɵangular_packages_platform_browser_platform_browser_g } from '@angular/platform-browser';
+import { APIURL } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,6 @@ export class DatabaseService {
   constructor(private http: HttpClient) { }
 
   game: Games;
-
 
 
   session(token) {
@@ -52,10 +52,10 @@ export class DatabaseService {
   }
 
   //   API URL
-  private gamesURL = 'http://localhost:3000/games/';
+  private gamesURL = `http://${APIURL}/games/`;
   //fav games URL
-  private favsURL = 'http://localhost:3000/favs/';
-
+  private favsURL = `http://${APIURL}/favs/`;
+z
   // Get games data
   getAllGames(): Observable<Games> {
     return this.http
@@ -98,7 +98,7 @@ export class DatabaseService {
 
   deleteFavGame(game) {
     return this.http
-      .delete<any>(`${this.favsURL}${game}`, this.httpOptions())
+      .delete<any>(`${this.gamesURL}${game}`, this.httpOptions())
       .pipe(
         retry(2),
         catchError(this.handleError)
