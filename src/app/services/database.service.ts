@@ -10,7 +10,7 @@ import { JwtInterceptor } from '../helpers/jwt.interceptor';
 import { Post } from '../models/post.model';
 import { Subject}   from 'rxjs';
 import { ɵangular_packages_platform_browser_platform_browser_g } from '@angular/platform-browser';
-import { APIURL } from '../environments/environment.prod';
+import { APIURL } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
