@@ -1,3 +1,9 @@
+
+export const environment = {
+  production: false,
+  apiURL: "http://localhost:3000"
+
+};
 export let APIURL = '';
 
 switch (window.location.hostname) {
