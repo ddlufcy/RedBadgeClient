@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
-import { APIURL } from '../../environments/environment.prod';
+import { APIURL } from '../environments/environment.prod';
 
 const apiURL = 'http://localhost:3000';
 @Injectable({ providedIn: 'root' })
