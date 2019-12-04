@@ -52,9 +52,9 @@ export class DatabaseService {
   }
 
   //   API URL
-  private gamesURL = `http://${APIURL}/games/`;
+  private gamesURL = `${APIURL}/games/`;
   //fav games URL
-  private favsURL = `http://${APIURL}/favs/`;
+  private favsURL = `${APIURL}/favs/`;
 z
   // Get games data
   getAllGames(): Observable<Games> {
