@@ -55,7 +55,7 @@ export class DatabaseService {
   private gamesURL = `${APIURL}/games/`;
   //fav games URL
   private favsURL = `${APIURL}/favs/`;
-z
+
   // Get games data
   getAllGames(): Observable<Games> {
     return this.http
@@ -98,7 +98,7 @@ z
 
   deleteFavGame(game) {
     return this.http
-      .delete<any>(`${this.gamesURL}${game}`, this.httpOptions())
+      .delete<any>(`${this.favsURL}${game}`, this.httpOptions())
       .pipe(
         retry(2),
         catchError(this.handleError)
